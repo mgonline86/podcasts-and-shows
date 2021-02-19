@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <title>{% block title %} {% endblock %}</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css')}}">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div id="mainContainer">
+            <nav>
+                <a href="/"><div id="logo">Courtney Goss 🎙️</div></a>
+                
+                <div class="dropdown">
+                    <button class="dropbtn"onclick="adminOn()">Admin View</button>
+                    <!-- <div class="dropdown-content">
+                        <a href="/show/create">Add a Show</a>
+                    </div> -->
+                </div>
+                <div class="dropdown">
+                  <button class="dropbtn" onclick="adminOff()">User View</button>
+                  <!-- <div class="dropdown-content">
+                      <a href="/show/create">Add a Show</a>
+                  </div> -->
+              </div>
+                <div class="dropdown">
+                  <h2 class="dropbtn">Shows</h2>
+                  <div class="dropdown-content">
+                    {% for d in data %}
+                      <a href="/show/{{ d.id }}">{{d.show_name}}</a>
+                    {% endfor %}
+                  </div>
+                </div>
+        
+            </nav>
+            {% block content %}
+            {% endblock %}
+        </div>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/script.js')}}"></script>
+    </body>
+</html>

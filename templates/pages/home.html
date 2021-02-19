@@ -1,0 +1,46 @@
+{% extends 'layouts/main.html' %}
+{% block title %}
+  Courtney Goss
+{% endblock %}
+{% block content %}
+
+    <div id="cardsContainer">
+      <div id="cardsHeader">
+       <h1><span>Shows</span></h1>
+      </div>
+      <div id='cards'>
+        <a class="adminVisible hidden" href="/show/create">
+        <div class="card" >
+          <div id="addShowCard">Add a New Show<p>+</div>
+        </div>
+        </a>
+        {% for d in data %}
+          
+ 
+            <div class="card">
+              <div class="adminVisible hidden" ><a class="editBtn" href="{{url_for('edit_show', show_id = d.id)}}">&#128394</a>
+                <form onsubmit="return confirm('Do you really want to delete this show?');" class="deleteBtn" action="{{ url_for('delete_show',show_id = d.id)}}" method="post">
+                  <button type="submit">&#128465</button>
+                  <a href="{{url_for('index')}}"></a>
+                </form>
+              </div>
+              <div class="showImage">
+                <img src="{{d.image_link}}" alt="{{d.show_name}}">
+              </div>
+              <h2>{{d.show_name}}</h2>
+              <div class="showInfo">
+                <div>
+                  <li><strong>Host: </strong>{{d.host_name}}</li>
+                  <li><strong>Period: </strong>{{d.period}}</li>
+                  <li><strong>Episodes: </strong>{{d.episodes}}</li>
+                </div>
+                <div id="more">
+                  <a href="/show/{{ d.id }}">More >></a>
+                </div>
+              </div>
+            </div>
+
+        {% endfor %}
+      </div>
+    </div>
+{% endblock %}

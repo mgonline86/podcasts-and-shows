@@ -1,0 +1,34 @@
+{% extends 'layouts/main.html' %}
+{% block title %}Edit {{show.show_name}}{% endblock %}
+{% block content %}
+  <div class="form-wrapper">
+    <form method="post" class="form" action="/show/{{show.id}}/edit">
+      <h3 class="form-heading">Edit {{show.show_name}} <a href="{{ url_for('index') }}" title="Back to homepage"><i class="fa fa-home pull-right"></i></a></h3>
+      <div class="form-group">
+        <label for="show_name">Show Name</label>
+        {{ form.show_name(class_ = 'form-control', value=show.show_name, autofocus = true) }}
+      </div>
+      <div class="form-group">
+        <label for="host_name">Host Name</label>
+        {{ form.host_name(class_ = 'form-control', value=show.host_name, autofocus = true) }}
+      </div>
+      <div class="form-group">
+        <label for="period">Period</label>
+        {{ form.period(class_ = 'form-control', value=show.period, autofocus = true) }}
+      </div>
+      <div class="form-group">
+          <label for="episodes">Episodes</label>
+          {{ form.episodes(class_ = 'form-control', value=show.episodes, autofocus = true) }}
+        </div>
+        <div class="form-group">
+          <label for="image_link">Image Link</label>
+          {{ form.image_link(class_ = 'form-control', value=show.image_link, placeholder='http://', autofocus = true) }}
+        </div>
+        <div class="form-group">
+          <label for="about">About</label>
+          <textarea class="form-control" id="about" cols=54 rows= 4 name="about">{{ show.about }}</textarea>
+        </div>
+      <input type="submit" value="Update Show" class="submitBtn">
+    </form>
+  </div>
+{% endblock %}

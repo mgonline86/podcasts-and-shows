@@ -1,0 +1,33 @@
+{% extends 'layouts/main.html' %}
+{% block title %}
+  Courtney Goss | {{show.show_name}}
+{% endblock %}
+{% block content %}
+
+
+<div id="viewShow">
+
+  <div class="viewShowInfo">
+    <div class="adminVisible hidden">
+      <form   action="{{url_for('edit_show', show_id = show.id)}}">
+        <button class="submitBtn" id="editBtn" type="submit">Edit Show</button>
+     </form>
+      <form onsubmit="return confirm('Do you really want to delete this show?');"  action="{{ url_for('delete_show',show_id = show.id)}}" method="post">
+        <button class="submitBtn" id="deleteBtn" type="submit">Delete Show</button>
+        <a href="{{url_for('index')}}"></a>
+     </form>
+    </div>
+    <h2>{{show.show_name}}</h2>
+    <li><strong>Host: </strong>{{show.host_name}}</li>
+    <li><strong>Period: </strong>{{show.period}}</li>
+    <li><strong>Episodes: </strong>{{show.episodes}}</li>
+    <p>{{show.about}}</p>
+  </div>
+  <div class="viewShowImage">
+    <img src="{{show.image_link}}" alt="{{show.show_name}}">
+  </div>
+</div>
+  
+
+ 
+{% endblock %}
